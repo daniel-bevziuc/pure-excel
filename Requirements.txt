@@ -1,0 +1,15 @@
+Webpack (imports/exports)
+    Babel
+    Scss
+    Eslint
+    2 Modes
+        -Dev Mode
+            Dev Server, SourceMaps, Eslint, Not Minified JS & CSS
+        -Pro Mode
+            Minified Code
+
+Git
+
+    Production
+
+    Development
