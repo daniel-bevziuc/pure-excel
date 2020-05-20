@@ -1,5 +1,5 @@
 @mixin button($color: green) {
-  height: 24px;
+  height: 33px;
   min-width: 24px;
   padding: 3px;
   text-align: center;
@@ -13,7 +13,7 @@
   }
 
   &:hover {
-    color: #999999;
+    background: #eee;
     cursor: pointer;
   }
 
