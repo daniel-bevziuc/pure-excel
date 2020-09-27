@@ -1,47 +1,47 @@
-import { DomListener } from '@core/DomListener'
+import {DomListener} from '@core/DomListener'
 
 export class ExcelComponent extends DomListener {
-    constructor($root, options = {}) {
-        super($root, options.listeners)
-        this.name = options.name || ''
-        this.emitter = options.emitter
-        this.unsubscribers = []
+  constructor($root, options = {}) {
+    super($root, options.listeners)
+    this.name = options.name || ''
+    this.emitter = options.emitter
+    this.subscribe = options.subscribe || []
+    this.store = options.store
+    this.unsubscribers = []
 
-        this.prepare()
-    }
+    this.prepare()
+  }
+  prepare() {}
 
-    // Configure our component to ours init()
-    prepare() {
+  toHTML() {
+    return ''
+  }
 
-    }
+  $emit(event, ...args) {
+    this.emitter.emit(event, ...args)
+  }
 
-    // Return template component
-    toHTML() {
-        return ''
-    }
+  $on(event, fn) {
+    const unsub = this.emitter.subscribe(event, fn)
+    this.unsubscribers.push(unsub)
+  }
 
-    // Notify listeners of the event
-    $emit(event, ...args) {
-        this.emitter.emit(event, ...args)
-    }
+  $dispatch(action) {
+    this.store.dispatch(action)
+  }
 
+  storeChanged() {}
 
-    // Subscribe on event
-    $on(event, fn) {
-        const unsub = this.emitter.subscribe(event, fn)
-        this.unsubscribers.push(unsub)
-    }
+  isWatching(key) {
+    return this.subscribe.includes(key)
+  }
 
-    // Initialize component
-    // Added DOM listeners
-    init() {
-        this.initDomListeners()
-    }
+  init() {
+    this.initDOMListeners()
+  }
 
-    // Delete component
-    // Clear listeners
-    destroy() {
-        this.removeDomListeners()
-        this.unsubscribers.forEach(unsub => unsub())
-    }
+  destroy() {
+    this.removeDOMListeners()
+    this.unsubscribers.forEach(unsub => unsub())
+  }
 }

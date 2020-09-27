@@ -7,14 +7,14 @@
   right: 0;
   left: 0;
   height: $header-height;
-  padding: 12px 8px;
+  padding: 8px 4px 0;
   display: flex;
   justify-content: space-between;
-  align-items: center;
 
   & .input {
     margin: 0;
-    padding: 15px 7px;
+    padding: 2px 7px;
+    min-width: 1px;
     color: #000;
     border: 1px solid transparent;
     border-radius: 2px;
@@ -35,4 +35,5 @@
   .button {
     @include button(red);
   }
+
 }
